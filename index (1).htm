@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Car Turntable Prices - Australian Turntables</title>
+    <meta name="description" content="Quick estimator for car turntables. Complete the form to receive a tailored estimate." />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #005f9e;
+            --dark-grey: #212529;
+            --light-grey-bg: #f8f9fa;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+            color: var(--dark-grey);
+            -webkit-font-smoothing:antialiased;
+        }
+        .hero-section { position: relative; overflow: hidden; }
+        .hero-card { background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1); }
+        .section-scroll-margin { scroll-margin-top: 80px; }
+        .logo-grayscale img { filter: grayscale(100%) opacity(70%); transition: filter 0.25s ease, transform 0.25s ease; }
+        .logo-grayscale img:hover { filter: grayscale(0%) opacity(100%); transform: translateY(-3px); }
+        .estimator-option { transition: all 0.18s ease-in-out; }
+        .estimator-option input:checked + label { border-color: var(--primary-blue); background-color: #eef6fc; box-shadow: 0 0 0 3px rgba(0,95,158,0.08); }
+        .insight-card:hover .insight-image { transform: scale(1.05); }
+        /* Before/After slider styles */
+        .ba-container { position: relative; overflow:hidden; border-radius: 10px; }
+        .ba-container img { display:block; width:100%; height:auto; user-select:none; -webkit-user-drag:none; }
+        .ba-overlay { position:absolute; top:0; left:0; height:100%; overflow:hidden; }
+        .ba-handle { position:absolute; top:50%; transform:translateY(-50%); width:3px; background:rgba(255,255,255,0.9); z-index:30; cursor: ew-resize; }
+        .ba-handle .knob { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:white; border-radius:999px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.2); }
+        .ba-range { position:absolute; left:0; right:0; bottom:8px; z-index:40; padding:0 16px; }
+        .mobile-sticky { display:none; }
+        @media (max-width: 768px) {
+            .mobile-sticky { display:flex; position:fixed; bottom:12px; left:12px; right:12px; z-index:60; gap:8px; align-items:center; justify-content:space-between; padding:10px; border-radius:12px; box-shadow:0 8px 28px rgba(0,0,0,0.12); background:white; }
+        }
+        .faq-item button[aria-expanded="true"] + .faq-content { display: block; }
+        .faq-item button[aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
+        .review-card { transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
+        .review-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+    </style>
+</head>
+<body class="bg-white">
+
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 w-full border-b border-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="text-2xl font-extrabold text-[var(--primary-blue)] tracking-wide" aria-label="Australian Turntables home">
+                    AUSTRALIAN TURNTABLES
+                </a>
+                <nav class="hidden md:flex items-center space-x-2">
+                    <a href="#price-estimator" class="text-gray-700 hover:text-[var(--primary-blue)] px-4 py-2 rounded-md text-sm font-semibold transition-colors">Estimator</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-[var(--primary-blue)] px-4 py-2 rounded-md text-sm font-semibold transition-colors">Reviews</a>
+                    <a href="#insights" class="text-gray-700 hover:text-[var(--primary-blue)] px-4 py-2 rounded-md text-sm font-semibold transition-colors">Guides</a>
+                    <a href="#download-guide" class="bg-[var(--primary-blue)] text-white px-5 py-2 rounded-md text-sm font-semibold hover:bg-[#004c7e] transition-colors">Download Guide</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section py-20 md:py-32 text-white">
+            <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1617551131984-8f8a0e1a2c3f?q=80&w=2070&auto=format&fit=crop" class="absolute z-0 w-full h-full object-cover top-0 left-0">
+                <source src="https://videos.pexels.com/video-files/8033722/8033722-hd_1920_1080_25fps.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="absolute z-10 w-full h-full top-0 left-0 bg-black/50"></div>
+            
+            <div class="container mx-auto px-6 relative z-20">
+                <div class="max-w-3xl">
+                    <div class="hero-card p-8 md:p-12 rounded-lg">
+                        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4">How Much Does a Car Turntable Cost?</h1>
+                        <p class="text-sm md:text-lg text-white/85 mb-6">Engineered for display and designed for tight spaces. Complete the configuration to receive a tailored estimate from our team.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="#price-estimator" class="inline-flex items-center bg-white text-[var(--primary-blue)] font-semibold px-5 py-3 rounded-md hover:opacity-95 transition">Get car turntable price</a>
+                            <a href="#contact" class="inline-flex items-center border border-white/50 text-white font-semibold px-5 py-3 rounded-md hover:bg-white/10 transition">Quote a maintenance</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="spinsy" class="py-12 md:py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="bg-slate-50 rounded-2xl p-6 md:p-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                        <div>
+                            <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900 leading-tight">Introducing Spinsy: The Portable Turntable</h2>
+                            <p class="mt-4 text-gray-700 leading-relaxed">The perfect solution for those seeking the convenience of a turntable without construction or permanent installations. Spinsy is installed on the existing surface of your garage or driveway.</p>
+                            <ul class="mt-6 space-y-4">
+                                </ul>
+                            <a href="#price-estimator" class="mt-8 inline-block bg-[var(--primary-blue)] text-white font-semibold px-6 py-3 rounded-md hover:bg-[#004c7e] transition-colors">Learn more about Spinsy</a>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRSnbk-vPU8ONRjs_rsXAmYOs6hBB0IklP-g&s" alt="Banner of the Spinsy product" class="rounded-xl shadow-2xl w-full h-auto object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="why-invest" class="py-12 md:py-20">
+             <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Why Invest in a Residential Turntable?</h2>
+                        <p class="mt-4 text-gray-700 leading-relaxed">A turntable minimises manoeuvre area, can increase property usability and value, and in some developments it enables additional living space or parking. For busy roads, a turntable also improves safety and resident convenience.</p>
+                        <a href="#download-guide" class="mt-6 inline-block bg-[var(--primary-blue)] text-white font-semibold px-6 py-3 rounded-md hover:bg-[#004c7e] transition-colors">Get the Brochure & Pricing Guide</a>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1589148933992-8c25447387b4?q=80&w=1974&auto=format&fit=crop" alt="Luxury car in a modern garage on a turntable" class="rounded-lg shadow-2xl w-full h-64 object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="before-after" class="py-10 md:py-16 bg-[var(--light-grey-bg)]">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">Before & After — Example Install</h2>
+                <div class="ba-container relative rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000&auto=format&fit=crop" alt="Before: driveway without turntable" class="w-full h-auto" id="ba-before">
+                    <div class="ba-overlay" id="ba-overlay" style="width:50%;">
+                        <img src="http://googleusercontent.com/file_content/0" alt="After: driveway with turntable" class="w-full h-auto">
+                    </div>
+                    <div class="ba-handle" id="ba-handle" style="left:50%;">
+                        <div class="knob"></div>
+                    </div>
+                </div>
+                <div class="ba-range mt-4">
+                    <input id="ba-range-slider" type="range" min="0" max="100" value="50" class="w-full">
+                </div>
+                <p class="text-sm text-gray-600 mt-2 text-center">Drag the handle or use the slider to compare.</p>
+            </div>
+        </section>
+        
+        <section id="price-estimator" class="bg-white py-12 md:py-20 section-scroll-margin">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl md:text-3xl font-bold">Car Turntable Price Calculator</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">Complete the short form to receive a preliminary supply-only estimate. We’ll use this to prepare a tailored follow-up.</p>
+                </div>
+                <div class="max-w-3xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-lg border border-gray-200">
+                    <div id="estimator-result-container" aria-live="polite">
+                        <div id="lead-capture-container">
+                            <form id="lead-capture-form" class="space-y-6" novalidate>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4 flex items-center"><span class="bg-[var(--primary-blue)] text-white rounded-full h-7 w-7 text-sm flex items-center justify-center mr-3">1</span> Your Details</h3>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label for="lead-name" class="block text-sm font-semibold text-gray-700 mb-1">Name*</label>
+                                            <input type="text" id="lead-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-[var(--primary-blue)] focus:border-[var(--primary-blue)] p-3" required>
+                                        </div>
+                                        <div>
+                                            <label for="lead-email" class="block text-sm font-semibold text-gray-700 mb-1">Email*</label>
+                                            <input type="email" id="lead-email" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-[var(--primary-blue)] focus:border-[var(--primary-blue)] p-3" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4 flex items-center"><span class="bg-[var(--primary-blue)] text-white rounded-full h-7 w-7 text-sm flex items-center justify-center mr-3">2</span> Your Project</h3>
+                                    <div class="space-y-4">
+                                        <div>
+                                            <label for="lead-region" class="block text-sm font-semibold text-gray-700 mb-1">Region*</label>
+                                            <select id="lead-region" class="block w-full border-gray-300 rounded-md shadow-sm p-3" required>
+                                                <option>Australia</option>
+                                                <option>United States</option>
+                                                <option>United Kingdom</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-semibold text-gray-700 mb-2">Choose the turntable you need*</label>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                                <div class="estimator-option relative">
+                                                    <input type="radio" id="turntable-ctx" name="turntableType" value="standard" class="peer hidden" checked>
+                                                    <label for="turntable-ctx" class="block border-2 border-gray-300 rounded-lg p-4 cursor-pointer text-center" aria-hidden="true">
+                                                        <span class="block font-semibold">CTX — Single Car</span>
+                                                    </label>
+                                                </div>
+                                                <div class="estimator-option relative">
+                                                    <input type="radio" id="turntable-ctx-plus" name="turntableType" value="heavy" class="peer hidden">
+                                                    <label for="turntable-ctx-plus" class="block border-2 border-gray-300 rounded-lg p-4 cursor-pointer text-center" aria-hidden="true">
+                                                        <span class="block font-semibold">CTX+ — Dual / Heavy</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="lead-purchase-time" class="block text-sm font-semibold text-gray-700 mb-1">Expected purchase timeline</label>
+                                            <select id="lead-purchase-time" class="block w-full border-gray-300 rounded-md shadow-sm p-3">
+                                                <option>Within 3 months</option>
+                                                <option>3 - 6 months</option>
+                                                <option>6+ months</option>
+                                                <option>Just researching</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-2">
+                                    <button type="submit" class="w-full flex items-center justify-center bg-[var(--primary-blue)] text-white font-semibold px-10 py-3 rounded-md hover:bg-[#004c7e] transition-colors">
+                                        <span>Get a quick price</span>
+                                        <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="estimator-result" class="hidden text-center">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="visualizer" class="py-12 md:py-20 bg-[var(--light-grey-bg)]">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl md:text-3xl font-bold">Visualize Your Turntable Solution</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">See our turntable in action. This interactive render shows how it operates in a typical residential setting.</p>
+                </div>
+                <div>
+                     <img src="https://i.postimg.cc/sXCHQ3P2/121.jpg" alt="3D Visualizer for Car Turntable" class="w-full h-auto rounded-lg shadow-lg border-2 border-gray-200">
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="bg-white py-12 md:py-20 section-scroll-margin">
+            </section>
+
+        <section id="trusted-by" class="py-12 bg-white">
+            <div class="container mx-auto px-6">
+                <h3 class="text-center text-gray-600 font-semibold uppercase tracking-wider">Trusted By</h3>
+                <div class="flex flex-wrap justify-center items-center gap-x-8 md:gap-x-12 gap-y-4 mt-6">
+                    <div class="logo-grayscale"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Siemens-logo.svg/2560px-Siemens-logo.svg.png" alt="Siemens" class="h-8"></div>
+                    <div class="logo-grayscale"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Bosch_Rexroth_AG_logo.svg/2560px-Bosch_Rexroth_AG_logo.svg.png" alt="Bosch Rexroth" class="h-8"></div>
+                    <div class="logo-grayscale"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/ABB_logo.svg/2560px-ABB_logo.svg.png" alt="ABB" class="h-8"></div>
+                    <div class="logo-grayscale"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Schneider_Electric_2012_logo.svg/2560px-Schneider_Electric_2012_logo.svg.png" alt="Schneider Electric" class="h-10"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="insights" class="bg-gray-900 text-white py-12 md:py-20 section-scroll-margin">
+            </section>
+
+        <section id="faq-download" class="py-12 md:py-20 bg-[var(--light-grey-bg)] section-scroll-margin">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <div class="mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">Frequently Asked Questions</h2>
+                    <div class="space-y-3">
+                        <div class="faq-item border border-gray-200 rounded-lg overflow-hidden bg-white">
+                            <button class="w-full text-left p-4 flex justify-between items-center font-semibold" aria-expanded="false">
+                                <span>How long does installation take?</span>
+                                <span class="faq-icon text-gray-500 text-2xl transition-transform transform">+</span>
+                            </button>
+                            <div class="faq-content px-4 pb-4 hidden">
+                                <p class="text-gray-600">Installation times vary depending on site access and scope. Typical installs take 1-3 days for residential supply & fit (not including civil works).</p>
+                            </div>
+                        </div>
+                        <div class="faq-item border border-gray-200 rounded-lg overflow-hidden bg-white">
+                            <button class="w-full text-left p-4 flex justify-between items-center font-semibold" aria-expanded="false">
+                                <span>Do you provide electrical work?</span>
+                                <span class="faq-icon text-gray-500 text-2xl transition-transform transform">+</span>
+                            </button>
+                            <div class="faq-content px-4 pb-4 hidden">
+                                <p class="text-gray-600">We provide mechanical and electrical integration options. Final scope depends on project requirements and local regulations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="download-guide">
+                    <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+                        <div class="text-center mb-4">
+                            <h3 class="text-xl font-bold">Download: Product & Pricing Guide</h3>
+                            <p class="text-gray-600 mt-1">A detailed PDF with options and specification notes. We will email the guide after you submit your address.</p>
+                        </div>
+                        <form id="guide-form" class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
+                            <input type="email" id="guide-email" placeholder="Your email" required class="col-span-1 sm:col-span-2 p-3 border border-gray-300 rounded-md">
+                            <button type="submit" class="bg-[var(--primary-blue)] text-white px-4 py-3 rounded-md font-semibold">Send me the guide</button>
+                        </form>
+                        <p id="guide-success" class="hidden mt-4 text-sm text-green-600 font-semibold">Thanks — check your inbox. If it doesn't arrive, we'll follow up by email.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[var(--dark-grey)] text-white">
+        <div class="container mx-auto py-8 px-6 text-center">
+            <p class="text-sm text-gray-400">© 2025 Australian Turntables. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Before/After Slider
+            const sliderContainer = document.querySelector('.ba-container');
+            if (sliderContainer) {
+                const overlay = document.getElementById('ba-overlay');
+                const handle = document.getElementById('ba-handle');
+                const rangeInput = document.getElementById('ba-range-slider');
+                let isDragging = false;
+
+                const updateSlider = (value) => {
+                    const percent = Math.max(0, Math.min(100, value));
+                    overlay.style.width = percent + '%';
+                    handle.style.left = percent + '%';
+                    if (rangeInput) rangeInput.value = percent;
+                };
+
+                const startDrag = () => isDragging = true;
+                const stopDrag = () => isDragging = false;
+
+                const onDrag = (e) => {
+                    if (!isDragging) return;
+                    const rect = sliderContainer.getBoundingClientRect();
+                    const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                    const percent = (x / rect.width) * 100;
+                    updateSlider(percent);
+                };
+
+                handle.addEventListener('mousedown', startDrag);
+                handle.addEventListener('touchstart', startDrag);
+                window.addEventListener('mouseup', stopDrag);
+                window.addEventListener('touchend', stopDrag);
+                window.addEventListener('mousemove', onDrag);
+                window.addEventListener('touchmove', onDrag);
+                rangeInput.addEventListener('input', (e) => updateSlider(e.target.value));
+            }
+
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item button');
+            faqItems.forEach(button => {
+                button.addEventListener('click', () => {
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                    button.setAttribute('aria-expanded', !isExpanded);
+                    const content = button.nextElementSibling;
+                    content.classList.toggle('hidden');
+                });
+            });
+
+            // Estimator Form (Placeholder Logic)
+            const leadForm = document.getElementById('lead-capture-form');
+            if(leadForm) {
+                leadForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you! Your request has been sent.');
+                });
+            }
+
+            // Download Guide Form (Placeholder Logic)
+            const guideForm = document.getElementById('guide-form');
+            const guideSuccess = document.getElementById('guide-success');
+            if(guideForm) {
+                guideForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    guideSuccess.classList.remove('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
